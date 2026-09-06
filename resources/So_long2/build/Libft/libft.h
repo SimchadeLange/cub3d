@@ -6,7 +6,7 @@
 /*   By: side-lan <side-lan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 17:40:22 by side-lan          #+#    #+#             */
-/*   Updated: 2025/10/06 16:06:37 by side-lan         ###   ########.fr       */
+/*   Updated: 2026/09/06 20:10:52 by side-lan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <stdint.h>
+# include "get_next_line/get_next_line.h";
 
 /*libft*/
 int		ft_atoi(const char *str);
@@ -55,9 +56,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
-/*get_next_line*/
-char	*get_next_line(int fd);
-int		str_search(char *str, char c);
+///*get_next_line*/
+//char	*get_next_line(int fd);
+//int		str_search(char *str, char c);
 
 /*printf*/
 int	ft_printf(const char *fmt, ...);

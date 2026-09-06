@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+         #
+#    By: side-lan <side-lan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 13:50:34 by ede-roo           #+#    #+#              #
-#    Updated: 2025/09/29 21:16:53 by ede-roo          ###   ########.fr        #
+#    Updated: 2026/09/06 20:42:27 by side-lan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ SRC = ft_atoi.c ft_bzero.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
       ft_strnstr.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
       ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
       ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-	  get_next_line/get_next_line_bonus.c printf/ft_buffer_management.c \
+	  printf/ft_buffer_management.c \
 	  printf/ft_printf.c printf/ft_put_etc.c \
-	  get_next_line/get_next_line_utils_bonus.c 
+	  get_next_line/get_next_line_utils.c get_next_line/get_next_line.c \
 	  
 
 OBJS = $(SRC:.c=.o)

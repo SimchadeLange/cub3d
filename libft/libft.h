@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: side-lan <side-lan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 12:12:23 by ede-roo           #+#    #+#             */
-/*   Updated: 2025/09/29 11:34:17 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/09/06 20:37:08 by side-lan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "get_next_line/get_next_line_bonus.h"
+# include "get_next_line/get_next_line.h"
 # include "printf/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,9 +22,9 @@
 # include <stdio.h>
 # include <limits.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
-# endif
+//# ifndef BUFFER_SIZE
+//#  define BUFFER_SIZE 2
+//# endif
 
 # ifndef OPEN_MAX
 #  define OPEN_MAX 1024
@@ -75,13 +75,13 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 
 /*get_next_line functions*/
-char	*extract_line(char *leftover);
-char	*ft_strjoin_and_free(char *leftover, char *buffer);
-char	*ft_remove_extracted_line(char *leftover, char *line);
-char	*read_and_store(char *buffer, char *leftover,
-			ssize_t bytes_read, int fd);
-char	*get_next_line(int fd);
-char	*process_leftover(char *leftover, char *line);
+//char	*extract_line(char *leftover);
+//char	*ft_strjoin_and_free(char *leftover, char *buffer);
+//char	*ft_remove_extracted_line(char *leftover, char *line);
+//char	*read_and_store(char *buffer, char *leftover,
+//			ssize_t bytes_read, int fd);
+//char	*get_next_line(int fd);
+//char	*process_leftover(char *leftover, char *line);
 
 /*ft_printf */
 int		ft_printf(const char *input, ...);
