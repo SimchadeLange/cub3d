@@ -1,0 +1,63 @@
+Four structs, in two layers: one shared (already in cub3d.h) and three that belong to Person B's side.
+
+1. t_config — the contract (shared)
+
+Already defined yesterday. It's just "what the file said": 4 texture paths, 2 colours, the map, the start tile and letter. Parser fills it, raycaster reads it. Nothing about mlx in here.
+
+2. t_img — one mlx image buffer (Person B)
+
+You need this for the screen and for each of the 4 textures, so make it a reusable type:
+
+c
+typedef struct s_img
+{
+	void	*ptr;       /* from mlx_new_image / mlx_xpm_file_to_image */
+	char	*addr;      /* from mlx_get_data_addr */
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		w;
+	int		h;
+}	t_img;
+
+With this, put_pixel(&img, x, y, color) and get_pixel(&tex, x, y) are one function each, and the same code works for the screen and the wall textures.
+
+3. t_player — where you are and where you look (Person B)
+c
+typedef struct s_player
+{
+	double	x;          /* position, in tile units */
+	double	y;
+	double	dir_x;      /* direction vector, length 1 */
+	double	dir_y;
+	double	plane_x;    /* camera plane, perpendicular to dir */
+	double	plane_y;
+	int		keys[6];    /* W A S D LEFT RIGHT held? */
+}	t_player;
+
+Why two vectors and not just an angle? Because the standard raycast loop computes each ray as dir + plane * cameraX, which is only vector additions — no sin/cos per column. Rotation is the only place you use trig. player_dir from the config becomes: N → dir (0,-1) plane (0.66,0); S → dir (0,1) plane (-0.66,0); E → dir (1,0) plane (0,0.66); W → dir (-1,0) plane (0,-0.66).
+
+4. t_game — the one struct you pass to every hook (Person B)
+c
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	t_img		screen;
+	t_img		tex[4];     /* NO SO WE EA, loaded from cfg->tex_path */
+	t_config	*cfg;       /* map + colours live here, don't copy them */
+	t_player	player;
+}	t_game;
+
+This is your so_long t_sl, split into pieces so it doesn't turn into a 25-field blob. mlx hooks only accept one void * param, so t_game * is what you pass everywhere.
+
+Optional: t_ray — per-column scratch data
+
+DDA needs about 12 variables per column (ray direction, which tile you're in, step size, distance to next grid line, hit side, wall height…). Putting them in a t_ray that you reset at the start of each column keeps you under the Norm's 5-variable-per-function limit and lets you split the DDA into init_ray, run_dda, draw_column. Person B can shape this one alone; nobody else touches it.
+
+Who owns what
+t_config → include/cub3d.h, frozen.
+t_img, t_player, t_game, t_ray → src/render/render.h, Person B's to change freely.
+Person A may want a small t_parser (line index, "seen" flags for the 6 identifiers, fd) in src/parse/parse.h. Same idea: private to A.
+
+The pattern to remember: one struct per concern, and a pointer from the big struct to the config instead of copying fields — then freeing is simple and there's one source of truth for the map.
