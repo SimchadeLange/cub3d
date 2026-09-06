@@ -1,0 +1,79 @@
+Yes, you can reuse a fair amount of so_long — but be selective, because cub3D differs in two important ways: the map is not rectangular (spaces are valid), and rendering is not tile-by-tile but one full-screen image you fill pixel by pixel every frame.
+
+What to take from so_long
+
+Take as-is
+
+libft/ including your ft_printf and get_next_line — you'll need all three.
+The Makefile skeleton (object dir, libft rule, mlx flags). Two fixes: the subject says cc, not gcc, and add a bonus rule.
+map_loading.c idea: read the file with GNL into a char **. Just don't strip lines to equal width.
+free_map, cleanup, close_window, the mlx_hook(win, 17, ...) red-cross handler, and the ESC keycode (65307). Arrow keys are 65361 (left) and 65363 (right).
+
+Adapt
+
+route_validation.c — your flood fill is the best tool for the "map must be closed" check. Instead of "can I reach exit?", the question becomes: flood from the player over 0/N/S/E/W tiles; if the fill ever touches a space, the edge of a line, or steps outside the array → Error. That is the whole closed-map check.
+map_tiles_checking — same shape, but allowed chars are 0 1 N S E W and space, and exactly one of N/S/E/W.
+
+Don't take
+
+map_limits (rectangular check is wrong for cub3D).
+render_map / mlx_put_image_to_window per tile. cub3D needs mlx_new_image + mlx_get_data_addr and writing pixels into the buffer, then one mlx_put_image_to_window per frame.
+mlx_key_hook — it fires once per press, so movement is jerky. Use mlx_hook for KeyPress (2) and KeyRelease (3) to set flags, and mlx_loop_hook to move + redraw every frame.
+Division of work
+
+The key to merging cleanly: agree on the shared header on day one, before either of you writes code. The parser fills the struct; the raycaster only reads it. Something like:
+
+c
+typedef struct s_config
+{
+	char	*tex_path[4];   /* NO, SO, WE, EA */
+	int		floor_rgb;      /* packed 0xRRGGBB */
+	int		ceil_rgb;
+	char	**map;          /* jagged, NULL-terminated */
+	int		map_h;
+	double	player_x;       /* center of start tile, e.g. 3.5 */
+	double	player_y;
+	char	player_dir;     /* 'N','S','E','W' */
+}	t_config;
+
+int	parse_cub(char *path, t_config *cfg);   /* 0 ok, prints Error\n... and returns 1 */
+void	free_config(t_config *cfg);
+
+Person A – parsing (parse_*.c)
+
+Argument check (.cub extension, file opens).
+Read all lines with GNL.
+Header lines: identifiers NO SO WE EA F C, any order, any number of spaces/empty lines, each exactly once, RGB 0–255, texture file must exist (open it).
+Map = everything after the last header line; only the 6 chars + spaces; one player; closed (flood fill); trailing empty lines handled.
+Every failure path: print Error\n<message>, free everything, return 1. Test with valgrind on 20+ broken maps — this is where evaluators try to break you.
+
+Person B – raycasting (render_*.c, hooks_*.c)
+
+mlx window + image buffer + put_pixel helper.
+Draw floor/ceiling halves with the two colors.
+DDA raycast per screen column (the Lode Vandevenne tutorial is the standard reference; put it in your README Resources).
+Wall height, side detection → pick one of 4 textures, texture X/Y sampling.
+WASD movement, arrow rotation, ESC/red cross.
+Load the 4 XPM textures with mlx_xpm_file_to_image + mlx_get_data_addr.
+
+Person B doesn't wait for the parser: write a tiny stub_parse.c that hardcodes the example map from the subject into t_config. Person A doesn't need mlx: write a main that parses and prints the struct.
+
+Merging
+
+Use two git branches (parsing, raycast) off main, where main contains only the header, libft, Makefile and main.c:
+
+c
+int	main(int argc, char **argv)
+{
+	t_config	cfg;
+
+	if (argc != 2 || parse_cub(argv[1], &cfg))
+		return (1);
+	run_game(&cfg);      /* Person B */
+	free_config(&cfg);
+	return (0);
+}
+
+When both branches build, the merge is literally: delete the stub, point run_game at the real cfg. The only conflicts you can get are in the header, which is why you freeze it first — if someone needs a new field, they message the other before adding it.
+
+One more thing the subject stresses (chapter IV): at the defense either of you can be asked to modify either part. Plan a session before evaluation where each walks the other through their code line by line — with a two-person split that's the part people skip and then fail on.
