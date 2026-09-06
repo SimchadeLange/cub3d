@@ -19,6 +19,7 @@ void	init_parse_struct(t_parser *p_data);
 
 //main
 int		parse_main(char *argv[]);
+bool	copy_file_to_text(t_parser *p_data);
 
 
 

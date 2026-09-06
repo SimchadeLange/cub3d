@@ -1,0 +1,7 @@
+/home/side-lan/Codam/so_long/build/CMakeFiles/mlx42.dir
+/home/side-lan/Codam/so_long/build/CMakeFiles/edit_cache.dir
+/home/side-lan/Codam/so_long/build/CMakeFiles/rebuild_cache.dir
+/home/side-lan/Codam/so_long/build/CMakeFiles/list_install_components.dir
+/home/side-lan/Codam/so_long/build/CMakeFiles/install.dir
+/home/side-lan/Codam/so_long/build/CMakeFiles/install/local.dir
+/home/side-lan/Codam/so_long/build/CMakeFiles/install/strip.dir
