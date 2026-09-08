@@ -1,0 +1,2 @@
+1; spaties moeten tussen de delimeter en de inhoud
+2; tussen de volgende moet mintens een spatie of newline zitte

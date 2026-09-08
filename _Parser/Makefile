@@ -7,9 +7,9 @@ LIBFT_DIR := ../libft
 LIBFT     := $(LIBFT_DIR)/libft.a
 INC     := -I$(LIBFT_DIR)
 
-SRC     := 	parser_organiser.c \
-			check_and_open_file.c \
-			init_and_free_structs.c
+SRC     := 	srcs/parser_organiser.c \
+			srcs/check_and_open_file.c \
+			srcs/init_and_free_structs.c
 
 OBJ     := $(SRC:.c=.o)
 
