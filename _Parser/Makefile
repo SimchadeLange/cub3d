@@ -9,7 +9,8 @@ INC     := -I$(LIBFT_DIR)
 
 SRC     := 	srcs/parser_organiser.c \
 			srcs/check_and_open_file.c \
-			srcs/init_and_free_structs.c
+			srcs/init_and_free_structs.c \
+			srcs/array_funcs.c
 
 OBJ     := $(SRC:.c=.o)
 

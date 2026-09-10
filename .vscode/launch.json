@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Parser",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/_Parser/parser",
+            "args": ["_Parser/textfiles/valid.cub"],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb"
+        }
+    ]
+}
