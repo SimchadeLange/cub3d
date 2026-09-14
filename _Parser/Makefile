@@ -8,9 +8,12 @@ LIBFT     := $(LIBFT_DIR)/libft.a
 INC     := -I$(LIBFT_DIR)
 
 SRC     := 	srcs/parser_organiser.c \
-			srcs/check_and_open_file.c \
+			srcs/get_elements/check_file.c \
 			srcs/init_and_free_structs.c \
-			srcs/array_funcs.c
+			srcs/array_funcs.c \
+			srcs/get_elements/parse_elements.c \
+			srcs/error_handling/error_funcs.c \
+			srcs/map_handling.c
 
 OBJ     := $(SRC:.c=.o)
 

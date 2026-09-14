@@ -9,13 +9,13 @@
 #include "libft/libft.h"
 #include <stdbool.h>
 
-enum  directions
+typedef enum  e_directions
 {
 	NORTH = 0,
 	SOUTH,
 	WEST,
 	EAST
-};
+}	t_directions;
 
 /*It's just "what the file said": 4 texture paths, 2 colours, the map, the start tile and letter. Parser fills it, raycaster reads it. Nothing about mlx in here.*/
 typedef struct s_config
@@ -27,7 +27,7 @@ typedef struct s_config
 	int				map_height;
 	double			player_x;       /* center of start tile, e.g. 3.5 */
 	double			player_y;
-	enum directions	player_dir;
+	t_directions	player_dir;
 }	t_config;
 
 #endif

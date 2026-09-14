@@ -4,8 +4,36 @@
 # include "../header.h"
 # include "get_next_line/get_next_line.h"
 
+typedef enum e_returnval
+{
+	RETURN_SUCCES = 0,
+	RETURN_FAIL,
+}	t_returnval;
+
+typedef enum e_error_type
+{
+	SUCCESS = 0,	// No Errors.
+	MLXFAIL,		// MLX42 function has failed.
+	LIBFTFAIL,		// Libft function has failed.
+	MEMFAIL,		// Dynamic memory allocation has failed.
+	INVFILE,		// The provided file was invalid or does not exist.
+	INVELEM,		// Element has invalid type identifier.
+	INVELEMNUM,		// Invalid number of elements in file
+	INVCLR,			// Colour is invalid.
+	INVTEXPATH,		// Texture path was invalid or does not exist.
+	NOTEX,			// Texture is missing.
+	NOMAP,			// Map is missing.
+	INVMAPCHAR,		// Map has invalid character.
+	INVMAPWALL,		// Map not closed/surrounded by walls.
+	NOPLAY,			// Map has no player position.
+	MULTPLAY,		// Map has multiple player positions.
+	READFAIL,		// Reading the file failed.
+	ERRMAX,			// Error count
+}	t_error_type;
+
 typedef struct s_parser
 {
+	int		map_start;
 	int		map_height;
 	int		file_height; 	//*
 	int 	fd;				//*
@@ -16,7 +44,7 @@ typedef struct s_parser
 }				t_parser;
 
 //map handling and floodfill
-
+int	FindMap(t_parser *P);
 
 //init and free structs
 void	FreeParseStruct(t_parser *p_data);
@@ -26,23 +54,26 @@ void	FreeArray(char **array, int height);
 
 //main
 int		parse_main(char *argv[]);
-bool	CheckInput(t_config *data, t_parser *p_data, char *filename);
+int		CheckInput(t_config *data, t_parser *p_data, char *filename);
 
 //check textpaths and colors
-void	FillTextPaths(t_config *D, t_parser *P, char *line, int type);
-bool	ParseLines(t_config *D, t_parser *P);
-bool	CheckValidElement(t_config *D, t_parser *P, char *line);
-bool	PutRGB(t_config *D, t_parser *P, char type);
-
-//bool	PutRGB(t_config *D, t_parser *P, char type);
+int		FillTextPaths(t_config *D, t_parser *P, char *line, t_directions type);
+int		ParseLines(t_config *D, t_parser *P);
+int		CheckValidElement(t_config *D, t_parser *P, char *line);
+int		PutRGB(uint32_t *rgb, t_parser *P, char *line);
+int		GetNextNum(char *line, int index);
 
 //check cub file
-bool	CopyFileToText(t_parser *p_data);
-bool	CheckNameValid(char *file_name, t_parser *p_data);
+int		CopyFileToText(t_parser *p_data);
+int		CheckNameValid(char *file_name, t_parser *p_data);
 int		CountNewLines(char *line);
 char	**MakeArrayFromString(char *line, int height);
 
 //testfuncs
 void	PrintArray(char **array, int height);
+void	PrintStruct(t_config *D, t_parser *P);
+
+//errors
+int		PrintErrors(t_error_type type);
 
 #endif

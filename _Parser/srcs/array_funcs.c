@@ -11,7 +11,7 @@ char	**MakeArrayFromString(char *line, int height)
 	height_index = 0;
 	array = malloc(sizeof(char *) * (height + 1));
 	if (!array)
-		return (printf("malloc error\n"), NULL);
+		return (PrintErrors(MEMFAIL), NULL);
 	while (height_index < height)
 	{
 		width = 0;
@@ -26,6 +26,5 @@ char	**MakeArrayFromString(char *line, int height)
 		start = start + width;
 	}
 	array[height] = NULL;
-	PrintArray(array, height);
 	return (array);
 }
