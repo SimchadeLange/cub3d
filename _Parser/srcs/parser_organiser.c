@@ -18,9 +18,9 @@ int	parse_main(char *argv[])
 	ft_bzero(&p_data, sizeof(p_data));
 	ft_bzero(&data, sizeof(data));
 	if (CheckInput(&data, &p_data, argv[1]) == RETURN_FAIL)
-		return (FreeParseStruct(&p_data), RETURN_FAIL);
+		return (free_structs(&p_data, &data), RETURN_FAIL);
 	PrintStruct(&data, &p_data);
-	FreeParseStruct(&p_data);
+	free_structs(&p_data, &data);
 	return(RETURN_SUCCES);
 }
 

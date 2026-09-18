@@ -6,7 +6,7 @@ int	ParseLines(t_config *D, t_parser *P)
 	int index;
 
 	index = 0;
-	while (index < (P->file_height - P->map_start) && P->elements < 7)
+	while (index < (P->file_height - P->map_height) && P->elements < 7)
 	{
 		if (CheckValidElement(D, P, P->file[index]) == RETURN_FAIL)
 			return (RETURN_FAIL);
@@ -54,12 +54,11 @@ int	FillTextPaths(t_config *D, t_parser *P, char *line, t_directions type)
 	check = ft_substr(line, index, end - index);
 	if (!check)
 	{
-		D->tex_path[type] = NULL;
+		D->tex_path[type] = NULL;	
 		return (PrintErrors(LIBFTFAIL));
 	}
 	P->elements++;
 	D->tex_path[type] = check;
-	free(check);
 	return (RETURN_SUCCES);
 }
 

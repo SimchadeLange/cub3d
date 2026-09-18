@@ -43,6 +43,10 @@ typedef struct s_parser
 	char	**map;
 }				t_parser;
 
+//main
+int		parse_main(char *argv[]);
+int		CheckInput(t_config *data, t_parser *p_data, char *filename);
+
 //map handling and floodfill
 int	FindMap(t_parser *P);
 
@@ -51,10 +55,6 @@ void	FreeParseStruct(t_parser *p_data);
 void	FreeMainStruct(t_config *data);
 void	free_structs(t_parser *p_data, t_config *data);
 void	FreeArray(char **array, int height);
-
-//main
-int		parse_main(char *argv[]);
-int		CheckInput(t_config *data, t_parser *p_data, char *filename);
 
 //check textpaths and colors
 int		FillTextPaths(t_config *D, t_parser *P, char *line, t_directions type);
@@ -67,6 +67,9 @@ int		GetNextNum(char *line, int index);
 int		CopyFileToText(t_parser *p_data);
 int		CheckNameValid(char *file_name, t_parser *p_data);
 int		CountNewLines(char *line);
+
+//array helpers
+char	**CopyArray(char **old, int start, int height);
 char	**MakeArrayFromString(char *line, int height);
 
 //testfuncs

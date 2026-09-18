@@ -37,6 +37,8 @@ int		CountNewLines(char *line)
 			counter++;
 		index++;
 	}
+	if (index > 0 && line[index - 1] != '\n')
+        counter++;
 	return (counter);
 }
 
