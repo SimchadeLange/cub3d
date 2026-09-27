@@ -1,21 +1,23 @@
-CC      := cc
-CFLAGS  := -Wall -Wextra -Werror -g
+CC        := cc
+CFLAGS    := -Wall -Wextra -Werror -g
 
-NAME    := parser
+NAME      := parser
 
 LIBFT_DIR := ../libft
 LIBFT     := $(LIBFT_DIR)/libft.a
-INC     := -I$(LIBFT_DIR)
+INC       := -I$(LIBFT_DIR)
 
-SRC     := 	srcs/parser_organiser.c \
-			srcs/get_elements/check_file.c \
-			srcs/init_and_free_structs.c \
-			srcs/array_funcs.c \
-			srcs/get_elements/parse_elements.c \
-			srcs/error_handling/error_funcs.c \
-			srcs/map_handling.c
+SRC       := srcs/parser_organiser.c \
+             srcs/get_elements/check_file.c \
+             srcs/init_and_free_structs.c \
+             srcs/array_funcs.c \
+             srcs/get_elements/parse_elements.c \
+             srcs/error_handling/error_funcs.c \
+             srcs/map_handling.c \
+             srcs/test_funcs.c
 
-OBJ     := $(SRC:.c=.o)
+OBJ_DIR   := obj
+OBJ       := $(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
@@ -25,11 +27,12 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
 
-%.o: %.c 
+$(OBJ_DIR)/%.o: srcs/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean

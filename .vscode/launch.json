@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/_Parser/parser",
-            "args": ["_Parser/textfiles/valid.cub"],
+            "args": ["_Parser/maps/valid/minimal.cub"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

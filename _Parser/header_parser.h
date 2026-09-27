@@ -31,16 +31,29 @@ typedef enum e_error_type
 	ERRMAX,			// Error count
 }	t_error_type;
 
+typedef struct s_rgbvalues
+{
+	int			red;
+	int			green;
+	int			blue;
+	int			alpha;
+	uint32_t	color;
+}	t_rgbvalues;
+
 typedef struct s_parser
 {
-	int		map_start;
-	int		map_height;
-	int		file_height; 	//*
-	int 	fd;				//*
-	int		elements;		//*
-	char	**file;			//*
-	char	**map_copy;
-	char	**map;
+	bool		map_not_empty;
+	int			map_start;
+	int			map_height;
+	int			file_height; 	//*
+	int 		fd;				//*
+	int			elements;		//*
+	char		**file;			//*
+	char		**map_copy;
+	char		**map;
+	int			max_width;
+	int			player_counter;
+	t_config	*Data;
 }				t_parser;
 
 //main
@@ -48,7 +61,10 @@ int		parse_main(char *argv[]);
 int		CheckInput(t_config *data, t_parser *p_data, char *filename);
 
 //map handling and floodfill
-int	FindMap(t_parser *P);
+int		FindMap(t_parser *P);
+int		ParseMapChars(t_parser *P, int x, int y);
+int		ParseMap(t_parser *P);
+int		InvalidVoids(t_parser *P, int x, int y);
 
 //init and free structs
 void	FreeParseStruct(t_parser *p_data);
@@ -69,8 +85,11 @@ int		CheckNameValid(char *file_name, t_parser *p_data);
 int		CountNewLines(char *line);
 
 //array helpers
-char	**CopyArray(char **old, int start, int height);
+int		MakeMap(t_parser *P, int height, int max_width, int start);
+char	**CopyArray(char **old, int height);
 char	**MakeArrayFromString(char *line, int height);
+int		RemoveNewlines(t_parser *P);
+int		LoopThroughArr(t_parser *P, int (*func)(t_parser *P, int x, int y));
 
 //testfuncs
 void	PrintArray(char **array, int height);

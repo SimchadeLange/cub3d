@@ -65,41 +65,49 @@ int	FillTextPaths(t_config *D, t_parser *P, char *line, t_directions type)
 //vind de rgb van de vloer en t plafond
 int	PutRGB(uint32_t *rgb, t_parser *P, char *line)
 {
-	int	red;
-	int green;
-	int	blue;
-	int alpha;
+	t_rgbvalues rgbv;
 	int	index;
 
 	index = 0;
 	P->elements++;
-	while (line[index] == ' ')
-		index++;
+	ft_bzero(&rgbv, sizeof(rgbv));
 	if (line[index] == '\0')
-		return (PrintErrors(INVELEM));
-	alpha = 0xFF;
-	red = ft_atoi(line + index);
-	index = GetNextNum(line, index);
-	green = ft_atoi(line + index);
-	index = GetNextNum(line, index);
-	blue = ft_atoi(line + index);
-	if (alpha < 0 || alpha > 255
-		|| red < 0 || red > 255
-		|| green < 0 || green > 255
-		|| blue < 0 || blue > 255)
 		return (PrintErrors(INVCLR));
-*rgb = 	((uint32_t)(unsigned char)red << 24)
-         | ((uint32_t)(unsigned char)green << 16)
-         | ((uint32_t)(unsigned char)blue << 8)
-         | ((uint32_t)(unsigned char)alpha);
+	rgbv.alpha = 0xFF;
+	rgbv.red = ft_atoi(line + index);
+	if ((rgbv.green = GetNextNum(line, index)) == -1)
+		return (PrintErrors(INVCLR));
+	if ((rgbv.blue = GetNextNum(line, index)) == -1)
+		return (PrintErrors(INVCLR));
+	if (rgbv.alpha < 0 || rgbv.alpha > 255
+		|| rgbv.red < 0 || rgbv.red > 255
+		|| rgbv.green < 0 || rgbv.green > 255
+		|| rgbv.blue < 0 || rgbv.blue > 255)
+		return (PrintErrors(INVCLR));
+*rgb = 	((uint32_t)(unsigned char)rgbv.red << 24)
+         | ((uint32_t)(unsigned char)rgbv.green << 16)
+         | ((uint32_t)(unsigned char)rgbv.blue << 8)
+         | ((uint32_t)(unsigned char)rgbv.alpha);
 	return (RETURN_SUCCES);
 }
 
 int	GetNextNum(char *line, int index)
 {
-	while (ft_isdigit(line[index]) == 1 && line[index] != '\0')
+	int	commacheck;
+
+	commacheck = 0;
+	while (line[index] == ' ')
 		index++;
-	while (ft_isdigit(line[index]) == 0 && line[index] != '\0')
+	while (ft_isdigit(line[index]) == true && line[index] != '\0')
 		index++;
-	return (index);
+	while ((line[index] == ' ' || line[index] == ',' ) && line[index] != '\0')
+	{
+		if (line[index] == ',')
+			commacheck++;
+		index++;
+	}
+	//wat als '\0 in isdigit komt?
+	if (ft_isdigit(line[index]) == false || commacheck != 1)
+		return (-1);
+	return (ft_atoi(line + index));
 }

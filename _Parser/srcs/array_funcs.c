@@ -35,7 +35,7 @@ char	**MakeArrayFromString(char *line, int height)
 	return (array);
 }
 
-char	**CopyArray(char **old, int start, int height)
+char	**CopyArray(char **old, int height)
 {
 	char	**new;
 	int		index;
@@ -46,11 +46,49 @@ char	**CopyArray(char **old, int start, int height)
 		return (NULL);
 	while (index < height)
 	{
-		new[index] = ft_strdup(old[index + start]);
+		new[index] = ft_strdup(old[index]);
 		if (!new[index])
 			return (FreeArray(new, index), NULL);
 		index++;
 	}
 	new[index] = NULL;
 	return (new);
+}
+
+int	RemoveNewlines(t_parser *P)
+{
+	char	*newline;
+	int		y;
+
+	y = 0;
+	newline = NULL;
+	while (y < P->map_height)
+	{
+		if ((newline = ft_strchr(P->map[y], '\n')) != NULL)
+			*newline = ' ';
+		y++;
+	}
+	return (RETURN_SUCCES);
+}
+
+int	LoopThroughArr(t_parser *P, int (*func)(t_parser *P, int x, int y))
+{
+	int	x;
+	int	y;
+	int	width;
+
+	y = 0;
+	while (y < P->map_height)
+	{
+		x = 0;
+		width = ft_strlen(P->map[y]);
+		while (x < width)
+		{
+			if (func(P, x, y) == RETURN_FAIL)
+				return  (RETURN_FAIL);
+			x++;
+		}
+		y++;
+	}
+	return (RETURN_SUCCES);
 }

@@ -2,8 +2,10 @@
 
 void	FreeParseStruct(t_parser *p_data)
 {
+	if (p_data->map != NULL)
+		FreeArray(p_data->map, p_data->map_height);
 	if (p_data->map_copy != NULL)
-		free(p_data->map_copy);
+		FreeArray(p_data->map_copy, p_data->map_height);
 	if (p_data->file != NULL)
 		FreeArray(p_data->file, p_data->file_height);
 }
