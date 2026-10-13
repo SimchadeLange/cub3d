@@ -3,16 +3,32 @@ CFLAGS  := -Wall -Wextra -Werror -g
 
 NAME    := raycast
 
+MLX_DIR := MLX42
+MLX     := $(MLX_DIR)/build/libmlx42.a
+INC     := -I$(MLX_DIR)/include
+
+UNAME   := $(shell uname)
+ifeq ($(UNAME), Darwin)
+	MLX_FLAGS := $(MLX) -lglfw -L"$(HOME)/.brew/opt/glfw/lib" \
+	             -framework Cocoa -framework OpenGL -framework IOKit
+else
+	MLX_FLAGS := $(MLX) -ldl -lglfw -pthread -lm
+endif
+
 SRC     := main.c
 
 OBJ     := $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(MLX) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) -o $(NAME)
 
-%.o: %.c 
+$(MLX):
+	cmake -B $(MLX_DIR)/build -S $(MLX_DIR)
+	cmake --build $(MLX_DIR)/build -j4
+
+%.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:

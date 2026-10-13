@@ -1,17 +1,14 @@
 #ifndef HEADER_RAYCAST_H
 # define HEADER_RAYCAST_H
-#include "../header.h"
 
-typedef struct s_img
-{
-	void	*ptr;       /* from mlx_new_image / mlx_xpm_file_to_image */
-	char	*addr;      /* from mlx_get_data_addr */
-	int		bpp;
-	int		line_len;
-	int		endian;
-	int		w;
-	int		h;
-}	t_img;
+#include "../header.h"
+#include "MLX42/MLX42.h"
+#include <math.h>
+
+# define WIDTH 1280
+# define HEIGHT 720
+# define MOVE_SPEED 3.0
+# define ROT_SPEED 2.5 //radians per second full turn 2.5 sec
 
 typedef struct s_player
 {
@@ -21,17 +18,31 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;    /* camera plane, perpendicular to dir */
 	double	plane_y;
-	int		keys[6];    /* W A S D LEFT RIGHT held? */
 }	t_player;
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	t_img		screen;
-	t_img		tex[4];     /* NO SO WE EA, loaded from cfg->tex_path */
+	mlx_t		*mlx;
+	mlx_image_t *screen;
+	mlx_texture_t *tex[4];
 	t_config	*cfg;       /* map + colours live here, don't copy them */
 	t_player	player;
 }	t_game;
+
+typedef struct s_ray
+{
+	double	dir_x;//direction of the ray
+	double	dir_y;
+	int		map_x;//which tile the ray is in starts at player
+	int		map_y;
+	double	delta_x;//how far the ray must treavel to cross one tile
+	double	delta_y;
+	int		side;// Which type of grid line we hit 0 = vertical  wallseast/west 1 = horizontal walls north south
+	double	perp_dist;//distance from camera plan to wall
+	int		line_height;// height in pixels
+	int		draw_start;//first screen of wall slice above ceiling
+	int		draw_start;//last screen of wall below floor
+	double	wall_x;// where on wall we hit
+}	t_ray
 
 #endif
