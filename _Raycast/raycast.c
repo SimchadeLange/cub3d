@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: side-lan <side-lan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 17:32:17 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/09/30 10:37:28 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/10/20 21:08:07 by side-lan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	void init_ray(t_game *g, t_ray *ray, int x)
 {
-	double_x	camera_x;
+	double_t	camera_x;
 
 	camera_x = 2.0 * x / WIDTH - 1;//  check the bug
 	ray->dir_x = g->player.dir_x + g->player.plane_x * camera_x;

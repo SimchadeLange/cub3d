@@ -11,7 +11,7 @@ static  void set_vectors(t_player *p, double dir_x, double dir_y)
 
 void    init_player(t_game *g)
 {
-    g->player.x = g->cfg->player_X;
+    g->player.x = g->cfg->player_x;
     g->player.y = g->cfg->player_y;//copy start position form cfg
 
     if (g->cfg->player_dir == NORTH)

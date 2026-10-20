@@ -15,7 +15,13 @@ else
 	MLX_FLAGS := $(MLX) -ldl -lglfw -pthread -lm
 endif
 
-SRC     := main.c
+SRC     := 	main.c \
+			draw.c \
+			hooks.c \
+			init_player.c \
+			raycast.c \
+			stub_parser.c \
+			window_management.c
 
 OBJ     := $(SRC:.c=.o)
 

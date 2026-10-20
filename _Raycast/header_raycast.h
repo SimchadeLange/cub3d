@@ -41,8 +41,22 @@ typedef struct s_ray
 	double	perp_dist;//distance from camera plan to wall
 	int		line_height;// height in pixels
 	int		draw_start;//first screen of wall slice above ceiling
-	int		draw_start;//last screen of wall below floor
+	int		draw_end;//last screen of wall below floor
 	double	wall_x;// where on wall we hit
-}	t_ray
+}	t_ray;
+
+
+int		parse_cub(char *path, t_config *cfg);
+void	draw_column(t_game *g, t_ray *ray, int x);
+void	game_loop(void *param);
+void    init_player(t_game *g);
+void	render_frame(t_game *g);
+int		run_game(t_config *cfg);
+int		init_window(t_game *game);
+int		load_texture(t_game *game);
+void	destroy_game(t_game *game);
+void	init_player(t_game *game);
+void	game_loop(void *param);
+void	free_config(t_config *cfg);
 
 #endif
