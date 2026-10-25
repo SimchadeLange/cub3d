@@ -1,15 +1,5 @@
 #include "../header_parser.h"
 
-int	main(int argc, char *argv[])
-{
-	argc = 0;
-	int		returnval;
-
-	returnval = parse_main(argv);
-	printf("returnval = %d\n", returnval);
-	return (0);
-}
-
 int	parse_main(char *argv[])
 {
 	t_parser p_data;
@@ -20,8 +10,9 @@ int	parse_main(char *argv[])
 	p_data.Data = &data;
 	if (CheckInput(&data, &p_data, argv[1]) == RETURN_FAIL)
 		return (free_structs(&p_data, &data), RETURN_FAIL);
+	data.map_height = p_data.map_height;
 	PrintStruct(&data, &p_data);
-	free_structs(&p_data, &data);
+	FreeParseStruct(&p_data);
 	return(RETURN_SUCCES);
 }
 
@@ -38,3 +29,4 @@ int	CheckInput(t_config *data, t_parser *p_data, char *filename)
 		return (RETURN_FAIL);
 	return (RETURN_SUCCES);
 }
+

@@ -66,18 +66,16 @@ int	FillTextPaths(t_config *D, t_parser *P, char *line, t_directions type)
 int	PutRGB(uint32_t *rgb, t_parser *P, char *line)
 {
 	t_rgbvalues rgbv;
-	int	index;
 
-	index = 0;
 	P->elements++;
 	ft_bzero(&rgbv, sizeof(rgbv));
-	if (line[index] == '\0')
+	if (line[0] == '\0')
 		return (PrintErrors(INVCLR));
 	rgbv.alpha = 0xFF;
-	rgbv.red = ft_atoi(line + index);
-	if ((rgbv.green = GetNextNum(line, index)) == -1)
+	rgbv.red = ft_atoi(line);
+	if ((rgbv.green = GetNextNum(line)) == -1)
 		return (PrintErrors(INVCLR));
-	if ((rgbv.blue = GetNextNum(line, index)) == -1)
+	if ((rgbv.blue = GetNextNum(line)) == -1)
 		return (PrintErrors(INVCLR));
 	if (rgbv.alpha < 0 || rgbv.alpha > 255
 		|| rgbv.red < 0 || rgbv.red > 255
@@ -88,13 +86,16 @@ int	PutRGB(uint32_t *rgb, t_parser *P, char *line)
          | ((uint32_t)(unsigned char)rgbv.green << 16)
          | ((uint32_t)(unsigned char)rgbv.blue << 8)
          | ((uint32_t)(unsigned char)rgbv.alpha);
+	ft_bzero(&rgbv, sizeof(rgbv));
 	return (RETURN_SUCCES);
 }
 
-int	GetNextNum(char *line, int index)
+int	GetNextNum(char *line)
 {
 	int	commacheck;
+	int index;
 
+	index = 0;
 	commacheck = 0;
 	while (line[index] == ' ')
 		index++;

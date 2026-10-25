@@ -2,7 +2,6 @@
 # define HEADER_PARSER_H
 
 # include "../header.h"
-# include "get_next_line/get_next_line.h"
 
 typedef enum e_returnval
 {
@@ -28,6 +27,7 @@ typedef enum e_error_type
 	NOPLAY,			// Map has no player position.
 	MULTPLAY,		// Map has multiple player positions.
 	READFAIL,		// Reading the file failed.
+	ARGINV,			//invalid amount of args
 	ERRMAX,			// Error count
 }	t_error_type;
 
@@ -77,7 +77,7 @@ int		FillTextPaths(t_config *D, t_parser *P, char *line, t_directions type);
 int		ParseLines(t_config *D, t_parser *P);
 int		CheckValidElement(t_config *D, t_parser *P, char *line);
 int		PutRGB(uint32_t *rgb, t_parser *P, char *line);
-int		GetNextNum(char *line, int index);
+int		GetNextNum(char *line);
 
 //check cub file
 int		CopyFileToText(t_parser *p_data);
