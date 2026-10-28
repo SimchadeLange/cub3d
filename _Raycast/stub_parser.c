@@ -65,12 +65,11 @@ int	parse_cub(char *path, t_config *cfg)
 	cfg->tex_path[1] = ft_strdup("textures/south.png");
 	cfg->tex_path[2] = ft_strdup("textures/west.png");
 	cfg->tex_path[3] = ft_strdup("textures/east.png");
-	cfg->floor_rgb = (220 << 16) | (100 << 8) | 50;
-	/* "F 220,100,50" packed as 0xRRGGBB: R shifted 16 bits up, G 8, B 0.
-	** 220<<16 = 0xDC0000, 100<<8 = 0x6400, 50 = 0x32 -> 0xDC6432. This is
-	** exactly what the real parser will produce from the .cub line. */
-	cfg->ceil_rgb = (30 << 16) | (30 << 8) | 60;
-	/* "C 30,30,60" -> 0x1E1E3C, a dark blue night sky. */
+	cfg->floor_rgb = (220 << 24) | (100 << 16) | (50 << 8) | 0xFF;
+	/* "F 220,100,50" packed as 0xRRGGBBAA, exactly what the real parser's
+	** PutRGB produces and what mlx_put_pixel expects: R<<24 G<<16 B<<8 A. */
+	cfg->ceil_rgb = (30 << 24) | (30 << 16) | (60 << 8) | 0xFF;
+	/* "C 30,30,60" -> 0x1E1E3CFF, a dark blue night sky. */
 	cfg->map = stub_map();
 	if (!cfg->map || !cfg->tex_path[0] || !cfg->tex_path[1]
 		|| !cfg->tex_path[2] || !cfg->tex_path[3])

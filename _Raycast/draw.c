@@ -1,10 +1,5 @@
 #include "header_raycast.h"
 
-static uint32_t	rgb_to_rgba(int rgb)
-{
-	return (((uint32_t)rgb << 8) | 0xFF);
-}
-
 static int	pick_texture(t_ray *ray)
 {
 	if (ray->side == 1 && ray->dir_y < 0)
@@ -52,11 +47,11 @@ void	draw_column(t_game *g, t_ray *ray, int x)
 	while (y < HEIGHT)
 	{
 		if (y < ray->draw_start)
-			mlx_put_pixel(g->screen, x, y, rgb_to_rgba(g->cfg->ceil_rgb));
+			mlx_put_pixel(g->screen, x, y, g->cfg->ceil_rgb);
 		else if (y <= ray->draw_end)
 			mlx_put_pixel(g->screen, x, y, wall_color(tex, ray, tex_x, y));
 		else
-			mlx_put_pixel(g->screen, x, y, rgb_to_rgba(g->cfg->floor_rgb));
+			mlx_put_pixel(g->screen, x, y, g->cfg->floor_rgb);
 		y++;
 	}
 }

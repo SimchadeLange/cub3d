@@ -3,10 +3,16 @@
 int	main(int argc, char **argv)
 {
 	t_config	cfg;
+	int			ret;
 
-	if (argc != 2 || parse_cub(argv[1], &cfg))
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error\nusage: ./cub3D <map.cub>\n", 2);
 		return (1);
-	run_game(&cfg);
-	free_config(&cfg);      /* main allocated it, main frees it */
-	return (0);
+	}
+	if (parse_cub(argv[1], &cfg))
+		return (1);
+	ret = run_game(&cfg);
+	free_config(&cfg);
+	return (ret);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kardashev <kardashev@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 17:32:14 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/09/25 14:02:13 by kardashev        ###   ########.fr       */
+/*   Updated: 2026/10/25 18:03:20 by ede-roo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_raycast.h"
 
-static int	fail(t_game *game, char *msg);
+static int	fail(t_game *game, const char *msg);
 static int	init_window(t_game *game);
 static int	load_texture(t_game *game);
 
@@ -69,7 +69,7 @@ void	destroy_game(t_game *game)
 		if (game->tex[i])//if yo dereference null MLX would carsh, so safeguard it against that
 		{
 			mlx_delete_texture(game->tex[i]);
-			game->text[i] = NULL;
+			game->tex[i] = NULL;
 		}
 		i++;
 	}
@@ -79,22 +79,13 @@ void	destroy_game(t_game *game)
 	game->screen = NULL;
 }
 
-static int	fail(t_game *game, char *msg)
+static int	fail(t_game *game, const char *msg)
 {
 	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(msg, 2);
+	ft_putstr_fd((char *)msg, 2);
 	ft_putstr_fd("\n", 2);
 	destroy_game(game);
 	return (1);	
 }
 
-void	init_player(t_game *game)
-{
-	(void)game;
-}
-
-void	game_loop(void *param)
-{
-	(void)param;
-}
 
