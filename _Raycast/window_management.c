@@ -6,11 +6,11 @@
 /*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 17:32:14 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/10/25 18:03:20 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/10/28 18:18:04 by ede-roo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header_raycast.h"
+#include "header.h"
 
 static int	fail(t_game *game, const char *msg);
 static int	init_window(t_game *game);
@@ -24,7 +24,7 @@ int	run_game(t_config *cfg)
 	game.cfg = cfg;
 	if (init_window(&game) || load_texture(&game))
 		return (1);
-	init_player(&game);
+	init_player_raycast(&game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 	destroy_game(&game);
@@ -49,6 +49,7 @@ int load_texture(t_game *game)
 	int i;
 
 	i = 0;
+	printf("[%s]\n", game->cfg->tex_path[0]);
 	while (i < 4)
 	{
 		game->tex[i] = mlx_load_png(game->cfg->tex_path[i]);

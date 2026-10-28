@@ -1,13 +1,18 @@
 #include "header.h"
-#include "_Parser/header_parser.h"
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
-	int		returnval;
+	t_config	cfg;
+	int			ret;
 
 	if (argc != 2)
-		return (PrintErrors(ARGINV));
-	returnval = parse_main(argv);
-	printf("returnval = %d\n", returnval);
-	return (0);
+	{
+		ft_putstr_fd("Error\nusage: ./cub3D <map.cub>\n", 2);
+		return (1);
+	}
+	if (parse_cub(argv[1], &cfg))
+		return (1);
+	ret = run_game(&cfg);
+	free_config(&cfg);
+	return (ret);
 }

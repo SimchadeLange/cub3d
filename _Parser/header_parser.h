@@ -1,8 +1,6 @@
 #ifndef HEADER_PARSER_H
 # define HEADER_PARSER_H
 
-# include "../header.h"
-
 typedef enum e_returnval
 {
 	RETURN_SUCCES = 0,

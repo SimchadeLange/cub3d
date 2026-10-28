@@ -1,4 +1,4 @@
-#include "../header_parser.h"
+#include "header.h"
 
 void	PrintArray(char **array, int height)
 {

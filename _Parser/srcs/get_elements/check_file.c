@@ -1,4 +1,4 @@
-#include "../../header_parser.h"
+#include "header.h"
 
 static int	CheckMapEmpty(t_parser *P, int x, int y)
 {

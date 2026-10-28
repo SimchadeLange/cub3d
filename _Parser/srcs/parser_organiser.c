@@ -1,4 +1,4 @@
-#include "../header_parser.h"
+#include "header.h"
 
 int	parse_main(char *argv[])
 {
@@ -11,6 +11,7 @@ int	parse_main(char *argv[])
 	if (CheckInput(&data, &p_data, argv[1]) == RETURN_FAIL)
 		return (free_structs(&p_data, &data), RETURN_FAIL);
 	data.map_height = p_data.map_height;
+	//data.map = p_data.map;
 	PrintStruct(&data, &p_data);
 	FreeParseStruct(&p_data);
 	return(RETURN_SUCCES);

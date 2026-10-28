@@ -1,7 +1,6 @@
 #ifndef HEADER_RAYCAST_H
 # define HEADER_RAYCAST_H
 
-# include "../header.h"
 # include "MLX42/MLX42.h"
 # include <math.h>
 
@@ -69,9 +68,12 @@ void	free_config(t_config *cfg);
 /* raycaster */
 int		run_game(t_config *cfg);
 void	destroy_game(t_game *game);
-void	init_player(t_game *g);
+void	init_player_raycast(t_game *g);
 void	game_loop(void *param);
 void	render_frame(t_game *g);
 void	draw_column(t_game *g, t_ray *ray, int x);
+
+/*load config*/
+int	parse_cub(char *path, t_config *cfg);
 
 #endif

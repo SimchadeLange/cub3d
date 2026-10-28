@@ -1,4 +1,4 @@
-#include "../header_parser.h"
+#include "header.h"
 
 void	FreeParseStruct(t_parser *p_data)
 {
@@ -44,4 +44,25 @@ void	FreeArray(char **array, int height)
 		index++;
 	}
 	free(array);
+}
+
+void	free_config(t_config *cfg)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		free(cfg->tex_path[i]);
+		cfg->tex_path[i] = NULL;
+		i++;
+	}
+	i = 0;
+	if (cfg->map)
+	{
+		while (cfg->map[i])
+			free(cfg->map[i++]);
+		free(cfg->map);
+	}
+	cfg->map = NULL;
 }

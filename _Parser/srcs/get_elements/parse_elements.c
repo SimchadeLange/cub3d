@@ -1,4 +1,4 @@
-#include "../../header_parser.h"
+#include "header.h"
 
 //loopt door de text line per line en vind de paths van alle elementen
 int	ParseLines(t_config *D, t_parser *P)

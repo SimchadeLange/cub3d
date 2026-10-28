@@ -1,4 +1,4 @@
-#include "../header_parser.h"
+#include "header.h"
 
 //check walls
 
@@ -12,8 +12,8 @@ static void init_player(t_parser *P, int x, int y)
 		P->Data->player_dir = WEST;
 	else
 		P->Data->player_dir = EAST;
-	P->Data->player_x = x;
-	P->Data->player_y = y;
+	P->Data->player_x = x + 0.5;
+	P->Data->player_y = y + 0.5;
 	P->player_counter++;
 }
 

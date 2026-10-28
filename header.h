@@ -29,4 +29,7 @@ typedef struct s_config
 	t_directions	player_dir;
 }	t_config;
 
+#include "_Parser/header_parser.h"
+#include "_Raycast/header_raycast.h"
+
 #endif

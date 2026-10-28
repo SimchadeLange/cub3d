@@ -1,5 +1,4 @@
-
-#include "header_raycast.h"
+#include "header.h"
 
 static  void set_vectors(t_player *p, double dir_x, double dir_y)
 {
@@ -9,7 +8,7 @@ static  void set_vectors(t_player *p, double dir_x, double dir_y)
     p->plane_y = dir_x *0.66;
 }
 
-void    init_player(t_game *g)
+void    init_player_raycast(t_game *g)
 {
     g->player.x = g->cfg->player_x;
     g->player.y = g->cfg->player_y;//copy start position form cfg

@@ -6,11 +6,11 @@
 /*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 17:32:17 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/10/25 17:51:55 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/10/28 17:37:48 by ede-roo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header_raycast.h"
+#include "header.h"
 
 static	void init_ray(t_game *g, t_ray *ray, int x)
 {

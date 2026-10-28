@@ -6,11 +6,11 @@
 /*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/27 11:26:39 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/10/25 17:53:14 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/10/28 17:37:39 by ede-roo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header_raycast.h"
+#include "header.h"
 
 static bool	is_walkable(t_config *cfg, double x, double y)
 {

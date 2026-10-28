@@ -1,4 +1,4 @@
-#include "../header_parser.h"
+#include "header.h"
 
 //behoud alle newlines die in de file zate
 char	**MakeArrayFromString(char *line, int height)

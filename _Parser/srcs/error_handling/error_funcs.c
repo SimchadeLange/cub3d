@@ -1,4 +1,4 @@
-#include "../../header_parser.h"
+#include "header.h"
 
 static const char	*ErrorMessages(t_error_type type)
 {
@@ -26,6 +26,6 @@ static const char	*ErrorMessages(t_error_type type)
 
 	int	PrintErrors(t_error_type type)
 	{
-		printf("Error:\n%s\n", ErrorMessages(type));
+		printf("Error\n%s\n", ErrorMessages(type));
 		return (RETURN_FAIL);
 	}
