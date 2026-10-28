@@ -14,6 +14,7 @@ SRC       := srcs/parser_organiser.c \
              srcs/get_elements/parse_elements.c \
              srcs/error_handling/error_funcs.c \
              srcs/map_handling.c \
+			 srcs/map_handling2.c \
              srcs/test_funcs.c \
 			 ../main.c
 OBJ_DIR   := obj
