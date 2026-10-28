@@ -26,4 +26,5 @@ void	PrintStruct(t_config *D, t_parser *P)
 	printf("%f\n", D->player_x);
 	printf("%f\n", D->player_y);
 	printf("%d\n", D->map_height);
+	PrintArray(P->map, P->map_height);
 }

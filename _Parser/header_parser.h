@@ -31,6 +31,7 @@ typedef enum e_error_type
 
 typedef struct s_rgbvalues
 {
+	int			index;
 	int			red;
 	int			green;
 	int			blue;
@@ -75,7 +76,6 @@ int		FillTextPaths(t_config *D, t_parser *P, char *line, t_directions type);
 int		ParseLines(t_config *D, t_parser *P);
 int		CheckValidElement(t_config *D, t_parser *P, char *line);
 int		PutRGB(uint32_t *rgb, t_parser *P, char *line);
-int		GetNextNum(char *line);
 
 //check cub file
 int		CopyFileToText(t_parser *p_data);
@@ -83,7 +83,6 @@ int		CheckNameValid(char *file_name, t_parser *p_data);
 int		CountNewLines(char *line);
 
 //array helpers
-int		MakeMap(t_parser *P, int height, int max_width, int start);
 char	**CopyArray(char **old, int height);
 char	**MakeArrayFromString(char *line, int height);
 int		RemoveNewlines(t_parser *P);
