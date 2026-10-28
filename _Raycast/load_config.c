@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   load_config.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: side-lan <side-lan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 18:12:11 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/10/28 18:27:32 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/10/28 19:08:43 by side-lan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "includes/header.h"
 
 static void	strip_newlines(t_config *cfg)
 {

@@ -1,4 +1,4 @@
-#include "header.h"
+#include "includes/header.h"
 
 int	main(int argc, char **argv)
 {
@@ -10,7 +10,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nusage: ./cub3D <map.cub>\n", 2);
 		return (1);
 	}
-	if (parse_cub(argv[1], &cfg))
+	if (parse_main(argv[1], &cfg))
 		return (1);
 	ret = run_game(&cfg);
 	free_config(&cfg);

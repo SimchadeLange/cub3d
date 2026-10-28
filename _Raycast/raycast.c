@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: side-lan <side-lan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 17:32:17 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/10/28 17:37:48 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/10/28 19:08:46 by side-lan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "includes/header.h"
 
 static	void init_ray(t_game *g, t_ray *ray, int x)
 {

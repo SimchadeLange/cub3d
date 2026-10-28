@@ -5,10 +5,10 @@ CFLAGS		:= -Wall -Wextra -Werror
 DEPFLAGS	:= -MMD -MP
 
 # ---------------------------------------------------------------- libraries
-LIBFT_DIR	:= libft
+LIBFT_DIR	:= Resources/libft
 LIBFT		:= $(LIBFT_DIR)/libft.a
 
-MLX_DIR		:= _Raycast/MLX42
+MLX_DIR		:= Resources/MLX42
 MLX			:= $(MLX_DIR)/build/libmlx42.a
 
 UNAME		:= $(shell uname)
@@ -33,14 +33,15 @@ SRC_RAY		:= _Raycast/draw.c \
 			   _Raycast/window_management.c \
 			   _Raycast/load_config.c
 
-SRC_PARSER	:= _Parser/srcs/array_funcs.c \
-			   _Parser/srcs/error_handling/error_funcs.c \
-			   _Parser/srcs/get_elements/check_file.c \
-			   _Parser/srcs/get_elements/parse_elements.c \
-			   _Parser/srcs/init_and_free_structs.c \
-			   _Parser/srcs/map_handling.c \
-			   _Parser/srcs/parser_organiser.c \
-			   _Parser/srcs/test_funcs.c
+SRC_PARSER	:= _Parser/array_funcs.c \
+			   _Parser/error_funcs.c \
+			   _Parser/check_file.c \
+			   _Parser/parse_elements.c \
+			   _Parser/init_and_free_structs.c \
+			   _Parser/map_handling.c \
+			   	_Parser/map_handling2.c \
+			   _Parser/parser_organiser.c \
+			   _Parser/test_funcs.c
 
 SRC			:= $(SRC_MAIN) $(SRC_RAY) $(SRC_PARSER)
 

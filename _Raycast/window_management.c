@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-roo <ede-roo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: side-lan <side-lan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 17:32:14 by ede-roo           #+#    #+#             */
-/*   Updated: 2026/10/28 18:18:04 by ede-roo          ###   ########.fr       */
+/*   Updated: 2026/10/28 19:08:51 by side-lan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "includes/header.h"
 
 static int	fail(t_game *game, const char *msg);
 static int	init_window(t_game *game);
